@@ -17,14 +17,13 @@ fun main() {
                 "Maestro" -> if (transactionSum < 75_000) 0.0 else 0.006 * transactionSum + 20.0
                 "Visa" -> if (transactionSum * 0.0075 < 35.0) 35.0 else 0.0075 * transactionSum
                 "Мир" -> if (transactionSum * 0.0075 < 35.0) 35.0 else 0.0075 * transactionSum
-                // всю голову сломал о том, что должно произойти с переменной calculation  в случае нарушения лимитов по ВК. -99999 - условность
                 "VK Pay" -> if (transactionSum <= vkPayLimitPerTransaction && vkPayLimitPerMonth <= totalThisMonth) 0.0 else -99999.0
                 else -> 0.0
             }
         } else {
-            println("Вы превысили лимит на переводы")
+            -99999.0
         }
         return calculation
     }
-    println(finalCommission("VK Pay", 40_000.0, 16_000.0))
+    println(finalCommission("VK Pay", 40_000.0, 15_100.0))
 }
